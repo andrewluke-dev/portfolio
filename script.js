@@ -7,6 +7,9 @@ const observer = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
+
+        // Stop observing after reveal
+        observer.unobserve(entry.target);
       }
     });
   },
@@ -14,6 +17,7 @@ const observer = new IntersectionObserver(
     threshold: 0.08,
   }
 );
+
 
 // Animate sections + project cards
 document
@@ -34,36 +38,42 @@ const filterButtons =
 const projectCards =
   document.querySelectorAll("[data-project]");
 
+
 filterButtons.forEach((button) => {
 
   button.addEventListener("click", () => {
 
-    // Remove active state
+    // Remove active state from all buttons
     filterButtons.forEach((btn) => {
       btn.classList.remove("active");
     });
 
-    // Add active state
+
+    // Add active state to selected button
     button.classList.add("active");
+
 
     const filter =
       button.dataset.filter;
 
-    projectCards.forEach((card, index) => {
 
+    projectCards.forEach((card) => {
+
+      // ALL PROJECTS
+      if (filter === "all") {
+        card.classList.remove("hidden");
+        return;
+      }
+
+
+      // FEATURED PROJECTS
       if (filter === "featured") {
 
-        // First 5 projects are featured
-        if (index < 5) {
+        if (card.classList.contains("featured-card")) {
           card.classList.remove("hidden");
         } else {
           card.classList.add("hidden");
         }
-
-      } else {
-
-        // Show all
-        card.classList.remove("hidden");
 
       }
 
@@ -87,6 +97,7 @@ document
       const targetId =
         link.getAttribute("href");
 
+
       if (
         !targetId ||
         targetId === "#"
@@ -94,14 +105,18 @@ document
         return;
       }
 
+
       const target =
         document.querySelector(targetId);
+
 
       if (!target) {
         return;
       }
 
+
       event.preventDefault();
+
 
       target.scrollIntoView({
         behavior: "smooth",
@@ -120,9 +135,13 @@ document
 const navbar =
   document.querySelector(".nav");
 
+
 window.addEventListener("scroll", () => {
 
-  if (!navbar) return;
+  if (!navbar) {
+    return;
+  }
+
 
   if (window.scrollY > 40) {
 
@@ -138,7 +157,30 @@ window.addEventListener("scroll", () => {
 
 
 // ========================================
-// CONSOLE
+// IMAGE ERROR CHECK
+// ========================================
+
+// Helpful while testing the portfolio.
+// If an image filename is wrong or missing,
+// the browser console will show exactly which one.
+
+document
+  .querySelectorAll(".project-shot img")
+  .forEach((image) => {
+
+    image.addEventListener("error", () => {
+
+      console.error(
+        `Could not load image: ${image.getAttribute("src")}`
+      );
+
+    });
+
+  });
+
+
+// ========================================
+// PORTFOLIO STATUS
 // ========================================
 
 console.log(
@@ -147,5 +189,9 @@ console.log(
 );
 
 console.log(
-  "14 projects loaded successfully 🚀"
+  "6 projects loaded 🚀"
+);
+
+console.log(
+  "17 project screenshots configured 📸"
 );
