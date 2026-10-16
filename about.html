@@ -4,48 +4,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="About Andrew Luke - Software Developer">
+
+  <meta
+    name="description"
+    content="About Andrew Luke - Software Developer"
+  >
+
   <title>About Me | Andrew Luke</title>
+
   <link rel="stylesheet" href="style.css">
 
   <style>
+    /* =========================
+       ABOUT PAGE
+    ========================= */
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #090d16;
+    }
+
     .about-page {
       max-width: 1100px;
       margin: 0 auto;
       padding: 110px 24px 80px;
       color: #f1f5f9;
       font-family: Inter, Arial, sans-serif;
+      box-sizing: border-box;
     }
 
-    body {
-      background: #090d16;
-    }
+    /* =========================
+       BACK BUTTON
+    ========================= */
 
     .about-back {
       display: inline-block;
       margin-bottom: 55px;
       color: #94a3b8;
       text-decoration: none;
+      font-size: 15px;
+      transition: color 0.2s ease;
     }
 
     .about-back:hover {
       color: #ffffff;
     }
 
+    /* =========================
+       HERO SECTION
+    ========================= */
+
     .about-hero {
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 300px minmax(0, 1fr);
       gap: 65px;
       align-items: center;
     }
 
-    .about-photo {
-      width: 100%;
+    /* =========================
+       PROFILE PHOTO FIX
+    ========================= */
+
+    .about-hero .about-photo {
+      display: block !important;
+      width: 100% !important;
+      max-width: 300px !important;
+      height: auto !important;
       aspect-ratio: 4 / 5;
       object-fit: cover;
       object-position: center 30%;
+
       border-radius: 22px;
       border: 1px solid #334155;
+      background: #111827;
+
+      opacity: 1 !important;
+      visibility: visible !important;
+      position: relative !important;
+      z-index: 10 !important;
+
+      transform: none !important;
+      filter: none !important;
+
+      box-sizing: border-box;
     }
 
     .about-label {
@@ -60,6 +102,7 @@
       font-size: clamp(38px, 5vw, 65px);
       margin: 15px 0;
       line-height: 1.1;
+      color: #f1f5f9;
     }
 
     .about-hero p,
@@ -69,6 +112,10 @@
       font-size: 16px;
     }
 
+    /* =========================
+       CONTENT SECTIONS
+    ========================= */
+
     .about-section {
       margin-top: 85px;
     }
@@ -76,7 +123,16 @@
     .about-section h2 {
       font-size: 28px;
       margin-bottom: 20px;
+      color: #f1f5f9;
     }
+
+    .about-section strong {
+      color: #ffffff;
+    }
+
+    /* =========================
+       TECHNOLOGIES
+    ========================= */
 
     .skills-list {
       display: flex;
@@ -85,6 +141,7 @@
     }
 
     .skills-list span {
+      display: inline-block;
       padding: 11px 17px;
       border: 1px solid #334155;
       border-radius: 10px;
@@ -93,10 +150,15 @@
       font-size: 14px;
     }
 
+    /* =========================
+       FOOTER
+    ========================= */
+
     .about-footer {
       margin-top: 90px;
       padding-top: 25px;
       border-top: 1px solid #273244;
+
       display: flex;
       gap: 25px;
       flex-wrap: wrap;
@@ -107,9 +169,21 @@
       text-decoration: none;
     }
 
+    .about-footer a:hover {
+      color: #ffffff;
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================= */
+
     @media (max-width: 700px) {
       .about-page {
-        padding-top: 55px;
+        padding: 55px 20px 60px;
+      }
+
+      .about-back {
+        margin-bottom: 35px;
       }
 
       .about-hero {
@@ -117,78 +191,134 @@
         gap: 30px;
       }
 
-      .about-photo {
-        max-width: 300px;
+      .about-hero .about-photo {
+        max-width: 300px !important;
       }
 
       .about-section {
         margin-top: 55px;
+      }
+
+      .about-hero h1 {
+        font-size: 38px;
+      }
+
+      .about-footer {
+        margin-top: 60px;
       }
     }
   </style>
 </head>
 
 <body>
+
   <main class="about-page">
-    <a class="about-back" href="index.html">← Back to Portfolio</a>
+
+    <!-- BACK TO PORTFOLIO -->
+
+    <a class="about-back" href="index.html">
+      ← Back to Portfolio
+    </a>
+
+    <!-- ABOUT HERO -->
 
     <section class="about-hero">
+
       <img
         class="about-photo"
         src="assets/profile.jpg"
         alt="Portrait of Andrew Luke"
+        width="300"
+        height="375"
+        loading="eager"
       >
 
       <div>
-        <div class="about-label">About Me</div>
-        <h1>Hi, I'm Andrew Luke.</h1>
+
+        <div class="about-label">
+          About Me
+        </div>
+
+        <h1>
+          Hi, I'm Andrew Luke.
+        </h1>
 
         <p>
-          I'm a software developer passionate about building
-          useful, well-designed applications and solving
-          real-world problems through technology.
+          I'm a software developer passionate about
+          building useful, well-designed applications
+          and solving real-world problems through
+          technology.
         </p>
 
         <p>
-          I work with Flutter, Dart, Python, backend APIs
-          and web technologies. I enjoy developing projects
-          from initial concepts to functional applications.
+          I work with Flutter, Dart, Python,
+          backend APIs and web technologies.
+          I enjoy developing projects from
+          initial concepts to functional applications.
         </p>
+
       </div>
+
     </section>
 
+    <!-- WHAT I DO -->
+
     <section class="about-section">
-      <h2>What I Do</h2>
+
+      <h2>
+        What I Do
+      </h2>
 
       <p>
-        My main focus is mobile and web application development.
+        My main focus is mobile and web application
+        development.
+
         I work on user interfaces, application logic,
         API integrations, debugging and testing.
+
         I'm also interested in AI-powered applications
         and modern backend development.
       </p>
+
     </section>
 
+    <!-- EXPERIENCE -->
+
     <section class="about-section">
-      <h2>Experience</h2>
+
+      <h2>
+        Experience
+      </h2>
 
       <p>
-        <strong>Software Development Intern — HOPn</strong>
+        <strong>
+          Software Development Intern — HOPn
+        </strong>
       </p>
 
       <p>
-        I contribute to AURIX, a Flutter-based financial
-        application, working on assigned development tasks,
-        API integration, debugging and testing.
+        I contribute to AURIX, a Flutter-based
+        financial application, working on assigned
+        development tasks, API integration,
+        debugging and testing.
+
         I use Git and GitHub for version control
-        and collaborate in a remote development environment.
+        and collaborate in a remote development
+        environment.
       </p>
+
     </section>
 
+    <!-- TECHNOLOGIES -->
+
     <section class="about-section">
-      <h2>Technologies I Work With</h2>
+
+      <h2>
+        Technologies I Work With
+      </h2>
 
       <div class="skills-list">
+
         <span>Flutter</span>
         <span>Dart</span>
         <span>Python</span>
@@ -199,17 +329,36 @@
         <span>CSS</span>
         <span>JavaScript</span>
         <span>REST APIs</span>
-        <span>Git & GitHub</span>
+        <span>Git &amp; GitHub</span>
         <span>PostgreSQL</span>
+
       </div>
+
     </section>
 
+    <!-- FOOTER -->
+
     <footer class="about-footer">
-      <a href="index.html">Portfolio</a>
-      <a href="https://github.com/andrewluke-dev"
-         target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="mailto:andreiutzsuperb@gmail.com">Email Me</a>
+
+      <a href="index.html">
+        Portfolio
+      </a>
+
+      <a
+        href="https://github.com/andrewluke-dev"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+
+      <a href="mailto:andreiutzsuperb@gmail.com">
+        Email Me
+      </a>
+
     </footer>
+
   </main>
+
 </body>
 </html>
